@@ -54,7 +54,7 @@ pipeline{
                     nexusUrl: '10.0.8.74:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    repository: 'demo-app-release', 
+                    repository: 'app-release', 
                     version: "1.0.0"
 
                 }
