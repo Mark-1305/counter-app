@@ -38,5 +38,28 @@ pipeline{
                 } 
             }
         } 
+        stage('Upload jar file to Nexus'){
+            steps{
+                script{
+                    def readpomVersion = readMavenPom file: 'pom.xml'
+                    nexusArtifactUploader artifacts: 
+                    [
+                        [artifactId: 'springboot', 
+                        classifier: '', 
+                        file: 'target/Uber.jar', 
+                        type: 'jar']
+                        ], 
+
+                    credentialsId: 'nexus-auth', 
+                    groupId: 'com.example', 
+                    nexusUrl: '10.0.8.74:8081', 
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: 'demo-app-release', 
+                    version: "${readpomVersion.version}"
+
+                }
+            }
+        } 
     }
 }
