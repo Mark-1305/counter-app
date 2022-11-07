@@ -72,14 +72,13 @@ pipeline{
                 }                
             }
         }
-        stage('Docker Image Build'){
+        stage('Docker Image Push to DockerHUB'){
             steps{                
                 script{
                     withCredentials([string(credentialsId: 'docker_creds', variable: 'docker_hub_cred')]){
                         sh 'docker login -u manoharshetty507 -p ${docker_hub_cred}'
                         sh 'docker image push manoharshetty507/$JOB_NAME:v1.$BUILD_ID'
-                        sh 'docker image push manoharshetty507/$JOB_NAME:latest'
-                    
+                        sh 'docker image push manoharshetty507/$JOB_NAME:latest'                    
                     }                 
                 }                
             }
