@@ -41,7 +41,8 @@ pipeline{
         stage('Upload jar file to Nexus'){
             steps{
                 script{
-                    def readpomVersion = readMavenPom file: 'pom.xml'                    
+                    def readpomVersion = readMavenPom file: 'pom.xml'   
+                    def nexusRepo = readMavenPom.version.endsWith('SNAPSHOT') ? "app-realease-snapshot" : "app-release"
                     nexusArtifactUploader artifacts: 
                     [
                         [artifactId: 'springboot', 
