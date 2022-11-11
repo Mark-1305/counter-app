@@ -122,7 +122,7 @@ This script has worked - it has to be used as Single Script not along with the a
                     }
                     if (apply){
                         sh """
-                        kubectl apply -f Deployment.yaml 
+                        kubectl apply -f .
                         """;
                     }  
                 } 
