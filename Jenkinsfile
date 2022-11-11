@@ -22,14 +22,6 @@ pipeline{
                 sh 'mvn clean install'
             }
         }
-        stage('Snyk Test') {
-            steps {
-               echo 'Testing...'
-               snykSecurity(
-                 snykInstallation: 'snyk-api-token',
-                 snykTokenId: '48a17242-acb2-455e-a405-2afb413b16ba',
-                   }
-                   }
                    
         stage('Static Code Analysis'){
             steps{
