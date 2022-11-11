@@ -99,10 +99,11 @@ This script has worked - it has to be used as Single Script not along with the a
     }
 */  
         stage('Kubernetes Deployment'){
-            when { expression {params.action == 'create'}}
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig'])
-
+                }
+            when { expression {params.action == 'create'}}
+            steps{
                 script{
                     def apply = false
                     try{
