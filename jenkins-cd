@@ -97,16 +97,15 @@ This script has worked - it has to be used as Single Script not along with the a
         } 
       }   
     }
-*/
- 
+*/ 
         stage('Kubernetes Login'){
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
-                sh "echo 'Login Success'"
+                    sh "echo 'Login Success - Now Deploy"
                 }
                 }
         }
-/* 
+ 
         stage('Kubernetes Deployments - In Local Cluster'){
             when { expression {params.action == 'create'}}
             steps{
@@ -130,7 +129,6 @@ This script has worked - it has to be used as Single Script not along with the a
                 } 
             }
         }
-      */     
+           
   }
 }
-
