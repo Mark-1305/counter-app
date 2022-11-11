@@ -102,7 +102,7 @@ This script has worked - it has to be used as Single Script not along with the a
         stage('Kubernetes Login'){
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
-                sh echo "Login Success"
+                sh "echo 'Login Success'"
                 }
                 }
         }
