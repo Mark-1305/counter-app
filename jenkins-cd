@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     parameters{
-        choice(name: 'action', choices: 'create\ndelete', Description: 'Create and Delete the pods')
+        choice(name: 'action', choices: 'create\ndelete', description: 'Create and Delete the pods')
     }
 
 /*
