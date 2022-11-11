@@ -29,6 +29,7 @@ pipeline {
             when { expression {params.action == 'create'}}
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
+                sh "sed -i 's#replace#manoharshetty507/springboot-ci-cd:${JOB_NAME:v1.$BUILD_ID}#g' Deployment.yaml"
                     script{
                     def apply = false
                     try{
@@ -64,7 +65,6 @@ pipeline {
                     }
                     if (destroy){
                         sh """
-
                             kubectl delete -f Deployment.yaml
                         """;
                         }
