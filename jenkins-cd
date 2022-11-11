@@ -18,6 +18,11 @@ pipeline {
                 }
                 }
         }
+        stage('Check kubectl version') {
+         steps {
+                 sh 'kubectl version'
+          }
+      }
         stage('Kubernetes Deployments_In Local_Cluster'){
             when { expression {params.action == 'create'}}
             steps{
