@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mysringbootapp
-          image: manoharshetty507/updated-demo-counter:latest
+          image: manoharshetty507/springboot-ci-cd:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9099
