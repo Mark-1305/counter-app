@@ -1,0 +1,37 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mydeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysringbootapp
+  template:
+    metadata:
+      labels:
+        app: mysringbootapp
+    spec:
+      containers:
+        - name: mysringbootapp
+          image: manoharshetty507/updated-demo-counter:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9099
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: myservice
+  labels:
+    app: mysringbootapp
+spec:
+  selector:
+    app: mysringbootapp
+  type: NodePort
+  ports:
+    - nodePort: 30036
+      port: 80
+      targetPort: 9099
