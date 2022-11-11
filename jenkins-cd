@@ -25,7 +25,7 @@ pipeline {
                 }
           }
       }
-        stage('Kubernetes Deployments_In Local_Cluster'){
+        stage('Application_Deployments_In Local_Cluster'){
             when { expression {params.action == 'create'}}
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
@@ -46,6 +46,30 @@ pipeline {
                         }  
                     } 
                 }               
+            }
+        }
+        stage('Delete Deployments'){
+            when {expression {params.action == 'destroy'}}
+            steps{
+                withKubeConfig([credentialsId: 'kubeconfig']){
+                    script{
+                    def destroy = false
+                    try{
+                        input message: 'please confirm to delete the deployment', ok: 'Ready to delete the config'
+                        destroy = true
+                    }
+                    catch (err){
+                        destroy = false
+                        CurrentBuild.result = 'UNSTABLE'
+                    }
+                    if (destroy){
+                        sh """
+
+                            kubectl delete -f Deployment.yaml
+                        """;
+                        }
+                    }
+                }
             }
         }          
     }
