@@ -14,7 +14,7 @@ pipeline {
         stage('git checkout'){
 
             steps{
-                git branch 'main', url: "https://github.com/Mark-1305/counter-app.git"
+                git branch: 'main', url: "https://github.com/Mark-1305/counter-app.git"
             }
         }
 /*
