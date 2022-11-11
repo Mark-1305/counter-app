@@ -1,6 +1,6 @@
 pipeline {
     agent any 
-
+/*
     parameters{
         choice(name: 'action', choices: 'create\ndestroy\ndestroyekscluster', description: 'Create/Update or Destroy the EKS cluster')
         string (name: 'cluster', defaultValue: 'demo-cluster', description: 'EKS Cluster Name')
@@ -10,6 +10,7 @@ pipeline {
         ACCESS_KEY = credentials('aws_access_key_id')
         SECRET_KEY = credentials('aws_secret_key_id')
     }
+*/
     stages{
         stage('git checkout'){
 
