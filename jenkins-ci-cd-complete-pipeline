@@ -87,12 +87,6 @@ pipeline{
                 }                
             }
         }
-        stage('Continous Deployment Starts Here'){
-            steps{
-                    sh echo "Deployment Starts Here"
-            }
-        }
-
         stage('Kubernetes Login'){
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
