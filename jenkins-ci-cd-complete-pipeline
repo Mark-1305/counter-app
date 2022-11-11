@@ -89,9 +89,7 @@ pipeline{
         }
         stage('Continous Deployment Starts Here'){
             steps{
-                script{
                     sh echo "Deployment Starts Here"
-                }
             }
         }
 
