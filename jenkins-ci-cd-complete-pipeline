@@ -106,7 +106,6 @@ pipeline{
             when { expression {params.action == 'create'}}
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
-                    sh "sed -i 's#replace#manoharshetty507/springboot-ci-cd:${JOB_NAME:v1.$BUILD_ID}#g' Deployment.yaml"
                     script{
                     def apply = false
                     try{
@@ -118,9 +117,8 @@ pipeline{
                         CurrentBuild.result = 'UNSTABLE'
                     }
                     if (apply){
-                        sh """
-                        kubectl apply -f Deployment.yaml 
-                        """;
+                        sh "sh "sed -i 's#replace#manoharshetty507/springboot-ci-cd:${JOB_NAME:v1.$BUILD_ID}#g' Deployment.yaml"
+                        sh "kubectl apply -f Deployment.yaml"
                         }  
                     } 
                 }               
