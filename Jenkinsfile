@@ -28,6 +28,8 @@ pipeline{
                snykSecurity(
                  snykInstallation: 'snyk-api-token',
                  snykTokenId: '48a17242-acb2-455e-a405-2afb413b16ba',
+                   }
+                   }
                    
         stage('Static Code Analysis'){
             steps{
