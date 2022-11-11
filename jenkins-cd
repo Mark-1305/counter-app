@@ -25,9 +25,9 @@ pipeline {
           }
       }
         stage('Kubernetes Deployments_In Local_Cluster'){
-            withKubeConfig([credentialsId: 'kubeconfig'])
             when { expression {params.action == 'create'}}
             steps{
+                  withKubeConfig([credentialsId: 'kubeconfig'])
                 script{
                     def apply = false
                     try{
