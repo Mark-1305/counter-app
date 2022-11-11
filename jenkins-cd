@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     parameters{
-        choice(name: 'action', choices: 'create\ndelete', description: 'Create and Delete the pods')
+        choice(name: 'action', choices: 'create\ndelete', Description: 'Create and Delete the pods')
     }
 
 /*
@@ -101,6 +101,7 @@ This script has worked - it has to be used as Single Script not along with the a
         stage('Kubernetes Deployment'){
             when { expression {params.action == 'create'}}
             steps{
+                withKubeConfig([credentialsId: 'kubeconfig'])
 
                 script{
                     def apply = false
@@ -114,11 +115,9 @@ This script has worked - it has to be used as Single Script not along with the a
                         CurrentBuild.result = 'UNSTABLE'
                     }
                     if (apply){
-                        withKubeConfig([credentialsId: 'kubeconfig']) {
                         sh """
                         kubectl apply -f Deployment.yaml 
                         """;
-                    }
                     }  
                 } 
             }
