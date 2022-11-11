@@ -117,7 +117,7 @@ pipeline{
                         CurrentBuild.result = 'UNSTABLE'
                     }
                     if (apply){
-                        sh "sh "sed -i 's#replace#manoharshetty507/springboot-ci-cd:${JOB_NAME:v1.$BUILD_ID}#g' Deployment.yaml"
+                        sh "sed -i 's#replace#manoharshetty507/springboot-ci-cd:${JOB_NAME:v1.$BUILD_ID}#g' Deployment.yaml"
                         sh "kubectl apply -f Deployment.yaml"
                         }  
                     } 
