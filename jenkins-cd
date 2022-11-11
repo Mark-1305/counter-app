@@ -104,6 +104,28 @@ This script has worked - it has to be used as Single Script not along with the a
                     sh "echo 'Login Success - Now Deploy'"
                 }
                 }
-        }           
+        }
+        stage('Kubernetes Deployments - In Local Cluster'){
+            when { expression {params.action == 'create'}}
+            steps{
+                script{
+                    def apply = false
+                    try{
+                        input message: 'please confirm the apply to iniate the deployment', ok 'Ready to apply the config'
+                        apply = true
+
+                    }
+                    catch (err){
+                        apply = false
+                        CurrentBuild.result = 'UNSTABLE'
+                    }
+                    if (apply){
+                        sh """
+                        kubectl apply -f Deployment.yaml 
+                        """;
+                    }  
+                } 
+            }
+        }        
   }
 }
